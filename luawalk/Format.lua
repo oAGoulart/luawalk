@@ -26,6 +26,10 @@ Format_.new = function(stream)
       self.stream:Read(typedef)))
   end
 
+  function self:Value(index)
+    return values_[index]
+  end
+
   function self:Iterate(iterator)
     for _, field in ipairs(values_) do
       iterator(field)
