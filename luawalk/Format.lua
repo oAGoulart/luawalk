@@ -26,8 +26,12 @@ Format_.new = function(stream)
       self.stream:Read(typedef)))
   end
 
-  function self:Value(index)
-    return values_[index]
+  function self:ValueByIndex(index)
+    if index == -1 then
+      return values_[#values_]
+    else
+      return values_[index]
+    end
   end
 
   function self:Iterate(iterator)

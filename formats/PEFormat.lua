@@ -1,8 +1,8 @@
 local parse = function(stream)
   local f = Format.new(stream)
   f:Get(Typedef.char[2], "e_magic")
-  local magic = f:Value(1)
-  assert(magic.value[1] == 77 and magic.value[2] == 90,
+  local magic = f:ValueByIndex(-1).value
+  assert(magic[1] == 77 and magic[2] == 90,
          "Invalid PE file magic.")
 
   f:Get(Typedef.ushort, "e_cblp")
@@ -23,6 +23,16 @@ local parse = function(stream)
   f:Get(Typedef.ushort, "e_oeminfo")
   f:Get(Typedef.ushort[10], "e_res2")
   f:Get(Typedef.ulong, "e_lfanew")
+  local SIZEOF_DOSHEADER = 64
+
+  local fileHeaderOffset = f:ValueByIndex(-1).value
+  f.stream:Seek("set", fileHeaderOffset)
+  
+  f:Get(Typedef.char[4], "Signature")
+  local signature = f:ValueByIndex(-1).value
+  assert(signature[1] == 80 and signature[2] == 69 and
+         signature[3] == 0 and signature[4] == 0,
+         "Invalid file header signature.")
   --! TODO: finish format
   return f
 end
