@@ -16,8 +16,8 @@ local PEFile = require("formats.PEFormat")
 
 local d = PEFile(s)
 
-d:Iterate(function(field)
-  print(field.name, "index:", field.index, "value:", field.value)
+d:Iterate(function(name, field)
+  print(name, "index:", field.index, "value:", field.value)
   if type(field.value) == "table" then
     for _, v in ipairs(field.value) do
       print(v)
