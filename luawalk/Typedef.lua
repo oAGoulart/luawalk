@@ -1,3 +1,5 @@
+assert(_G._VERSION == "Lua 5.4")
+
 local Typedef_ = {}
 Typedef_.new = function(fmt, size, name, count)
   assert(name)

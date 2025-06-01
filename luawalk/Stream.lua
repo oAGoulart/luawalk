@@ -1,3 +1,5 @@
+assert(_G._VERSION == "Lua 5.4")
+
 local Stream_ = {}
 Stream_.new = function(source)
   local self = {}

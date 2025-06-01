@@ -25,9 +25,10 @@ local parse = function(stream)
   local SIZEOF_DOSHEADER = 64
 
   f:Jump(f.e_lfanew.value)
-  f:Get(Typedef.char[4], "Signature")
-  assert(f.Signature.value[1] == 80 and f.Signature.value[2] == 69 and
-         f.Signature.value[3] == 0 and f.Signature.value[4] == 0,
+  f.nt = {}
+  f:Get(Typedef.char[4], "nt.Signature")
+  assert(f.nt.Signature.value[1] == 80 and f.nt.Signature.value[2] == 69 and
+         f.nt.Signature.value[3] == 0 and f.nt.Signature.value[4] == 0,
          "Invalid file header signature.")
   --! TODO: finish format
   return f

@@ -1,3 +1,9 @@
+assert(_G._VERSION == "Lua 5.4")
+
+if String == nil then
+  require("luawalk.String")
+end
+
 local Field_ = {}
 Field_.new = function(index, typedef, value)
   local self = {}
@@ -15,7 +21,15 @@ Format_.new = function(stream)
   local stream_ = stream
 
   function self:Get(typedef, name)
-    self[name] = Field_.new(
+    local attr = String.split(name, ".", true)
+    local key = self
+    if #attr > 0 then
+      for i = 1, #attr - 1, 1 do
+        key = key[attr[i]]
+      end
+      name = attr[#attr]
+    end
+    key[name] = Field_.new(
       stream_:Index(),
       typedef,
       stream_:Read(typedef))
