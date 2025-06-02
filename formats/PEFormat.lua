@@ -30,6 +30,14 @@ local parse = function(stream)
   assert(f.nt.Signature.value[1] == 80 and f.nt.Signature.value[2] == 69 and
          f.nt.Signature.value[3] == 0 and f.nt.Signature.value[4] == 0,
          "Invalid file header signature.")
+  f.nt.FileHeader = {}
+  f:Get(Typedef.ushort, "nt.FileHeader.Machine")
+  f:Get(Typedef.ushort, "nt.FileHeader.NumberOfSections")
+  f:Get(Typedef.ulong, "nt.FileHeader.TimeDateStamp")
+  f:Get(Typedef.ulong, "nt.FileHeader.PointerToSymbolTable")
+  f:Get(Typedef.ulong, "nt.FileHeader.NumberOfSymbols")
+  f:Get(Typedef.ushort, "nt.FileHeader.SizeOfOptionalHeader")
+  f:Get(Typedef.ushort, "nt.FileHeader.Characteristics")
   --! TODO: finish format
   return f
 end
