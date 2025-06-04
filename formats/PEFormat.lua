@@ -38,6 +38,12 @@ local parse = function(stream)
   f:Get(Typedef.ulong, "nt.FileHeader.NumberOfSymbols")
   f:Get(Typedef.ushort, "nt.FileHeader.SizeOfOptionalHeader")
   f:Get(Typedef.ushort, "nt.FileHeader.Characteristics")
+  f.nt.OptionalHeader = {}
+  if f.nt.FileHeader.SizeOfOptionalHeader == 220 then
+    --! 32
+  else
+    --! 64
+  end
   --! TODO: finish format
   return f
 end
