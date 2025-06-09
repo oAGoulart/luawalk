@@ -41,6 +41,37 @@ local parse = function(stream)
   f.nt.OptionalHeader = {}
   if f.nt.FileHeader.SizeOfOptionalHeader == 220 then
     --! 32
+    f:Get(Typedef.ushort, "nt.OptionalHeader.Magic")
+    f:Get(Typedef.byte, "nt.OptionalHeader.MajorLinkerVersion")
+    f:Get(Typedef.byte, "nt.OptionalHeader.MinorLinkerVersion")
+    f:Get(Typedef.ulong, "nt.OptionalHeader.SizeOfCode")
+    f:Get(Typedef.ulong, "nt.OptionalHeader.SizeOfInitializedData")
+    f:Get(Typedef.ulong, "nt.OptionalHeader.SizeOfUninitializedData")
+    f:Get(Typedef.ulong, "nt.OptionalHeader.AddressOfEntryPoint")
+    f:Get(Typedef.ulong, "nt.OptionalHeader.BaseOfCode")
+    f:Get(Typedef.ulong, "nt.OptionalHeader.BaseOfData")
+    f:Get(Typedef.ulong, "nt.OptionalHeader.ImageBase")
+    f:Get(Typedef.ulong, "nt.OptionalHeader.SectionAlignment")
+    f:Get(Typedef.ulong, "nt.OptionalHeader.FileAlignment")
+    f:Get(Typedef.ushort, "nt.OptionalHeader.MajorOperatingSystemVersion")
+    f:Get(Typedef.ushort, "nt.OptionalHeader.MinorOperatingSystemVersion")
+    f:Get(Typedef.ushort, "nt.OptionalHeader.MajorImageVersion")
+    f:Get(Typedef.ushort, "nt.OptionalHeader.MinorImageVersion")
+    f:Get(Typedef.ushort, "nt.OptionalHeader.MajorSubsystemVersion")
+    f:Get(Typedef.ushort, "nt.OptionalHeader.MinorSubsystemVersion")
+    f:Get(Typedef.ulong, "nt.OptionalHeader.Win32VersionValue")
+    f:Get(Typedef.ulong, "nt.OptionalHeader.SizeOfImage")
+    f:Get(Typedef.ulong, "nt.OptionalHeader.SizeOfHeaders")
+    f:Get(Typedef.ulong, "nt.OptionalHeader.CheckSum")
+    f:Get(Typedef.ushort, "nt.OptionalHeader.Subsystem")
+    f:Get(Typedef.ushort, "nt.OptionalHeader.DllCharacteristics")
+    f:Get(Typedef.ulong, "nt.OptionalHeader.SizeOfStackReserve")
+    f:Get(Typedef.ulong, "nt.OptionalHeader.SizeOfStackCommit")
+    f:Get(Typedef.ulong, "nt.OptionalHeader.SizeOfHeapReserve")
+    f:Get(Typedef.ulong, "nt.OptionalHeader.SizeOfHeapCommit")
+    f:Get(Typedef.ulong, "nt.OptionalHeader.LoaderFlags")
+    f:Get(Typedef.ulong, "nt.OptionalHeader.NumberOfRvaAndSizes")
+    f.nt.OptionalHeader.DataDirectory = {}
   else
     --! 64
   end
