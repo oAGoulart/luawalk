@@ -6,14 +6,7 @@ Stream_.new = function(source)
 
   local file_ = nil
   if type(source) == "string" then
-    if string.match(source, "[\\/]") ~= nil then
-      self.file_ = assert(io.open(source, "r+b"))
-    else
-      local path = os.tmpname()
-      self.file_ = assert(io.open(path, "r+b"))
-      self.file_:write(source)
-      self.file_:seek("set", 0)
-    end
+    self.file_ = assert(io.open(source, "r+b"))
   elseif io.type(source) == "file" then
     self.file_ = source
   else
